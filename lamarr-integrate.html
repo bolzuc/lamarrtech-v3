@@ -1,0 +1,164 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAMARR | INTEGRATE - Lamarr Tech</title>
+    <!-- Favicon - NUEVO -->
+    <link rel="icon" href="img/infinity-modern-bluedark.png" type="image/png">
+    <link rel="shortcut icon" href="img/infinity-modern-bluedark.png" type="image/png">
+    <link rel="apple-touch-icon" href="img/infinity-modern-bluedark.png">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/page-section.css">
+    <style>
+        .content-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            text-align: left;
+            align-items: center;
+        }
+        .content-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        .content-text h2 {
+            font-size: 2.2em;
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .content-text ul {
+            list-style-position: inside;
+            padding-left: 10px;
+            margin-top: 20px;
+        }
+        .content-text li {
+            font-size: 1.1em;
+            color: var(--color-text-secondary);
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        .content-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        .content-image img {
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html"><img src="img/logo-azul-oscuro.png" alt="Lamarr Tech Logo"></a>
+            </div>
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html" data-lang-key="nav_inicio">INICIO</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="active" data-lang-key="nav_servicios">SERVICIOS
+                            <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                        </a>
+                        <ul class="dropdown-content">
+                            <li><a href="lamarr-cloud.html" data-lang-key="nav_servicios_cloud">CLOUD</a></li>
+                            <li><a href="lamarr-integrate.html" data-lang-key="nav_servicios_integrate">INTEGRATE</a></li>
+                            <li><a href="lamarr-data-ai.html" data-lang-key="nav_servicios_data_ai">DATA+AI</a></li>
+                            <li><a href="lamarr-secure.html" data-lang-key="nav_servicios_secure">SECURE</a></li>
+                            <li><a href="services-sap.html" data-lang-key="nav_servicios_sap">SAP</a></li>
+                        </ul>
+                    </li>
+                    <!-- <li><a href="nuestro-equipo.html" data-lang-key="nav_equipo">EQUIPO</a></li> -->
+                    <li><a href="noticias.html" data-lang-key="nav_noticias">NOTICIAS</a></li>
+                    <li><a href="contact.html" data-lang-key="nav_contacto">CONTACTO</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Botón de Idioma MODIFICADO -->
+            <div class="language-switcher">
+                <button class="lang-btn" aria-label="Seleccionar idioma">
+                    <span class="lang-btn-text">ES</span>
+                    <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+                <div class="lang-dropdown">
+                    <a href="#" data-lang="es">🇪🇸 ES (Español)</a>
+                    <a href="#" data-lang="pt">🇧🇷 PT (Português)</a>
+                    <a href="#" data-lang="en">🇺🇸 EN (English)</a>
+                </div>
+            </div>
+
+            <button class="menu-toggle" aria-label="Abrir menú">
+                <svg id="menu-icon-open" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                <svg id="menu-icon-close" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-nav-container">
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="index.html" data-lang-key="nav_inicio">INICIO</a></li>
+                <li class="mobile-submenu">
+                    <a href="#" class="mobile-submenu-toggle" data-lang-key="nav_servicios">SERVICIOS
+                        <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                    </a>
+                    <ul class="mobile-submenu-content">
+                        <li><a href="lamarr-cloud.html" data-lang-key="nav_servicios_cloud">CLOUD</a></li>
+                        <li><a href="lamarr-integrate.html" data-lang-key="nav_servicios_integrate">INTEGRATE</a></li>
+                        <li><a href="lamarr-data-ai.html" data-lang-key="nav_servicios_data_ai">DATA+AI</a></li>
+                        <li><a href="lamarr-secure.html" data-lang-key="nav_servicios_secure">SECURE</a></li>
+                        <li><a href="services-sap.html" data-lang-key="nav_servicios_sap">SAP</a></li>
+                    </ul>
+                </li>
+                <!-- <li><a href="nuestro-equipo.html" data-lang-key="nav_equipo">EQUIPO</a></li> -->
+                <li><a href="noticias.html" data-lang-key="nav_noticias">NOTICIAS</a></li>
+                <li><a href="contact.html" data-lang-key="nav_contacto">CONTACTO</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <main>
+        <section class="page-section">
+            <div class="container">
+                <h1 data-lang-key="integrate_h1">LAMARR | INTEGRATE</h1>
+                <p data-lang-key="integrate_p1">Conectamos tus sistemas, datos y aplicaciones. Creamos flujos de información fluidos entre SAP, tus plataformas cloud y aplicaciones de terceros para una operación unificada.</p>
+                
+                <div class="content-wrapper">
+                    <div class="content-text">
+                        <h2 data-lang-key="integrate_s1_h2">Integra tu Ecosistema Tecnológico</h2>
+                        <p data-lang-key="integrate_s1_p">En el núcleo de la transformación digital está la integración. LAMARR | INTEGRATE asegura que tus aplicaciones críticas (ERP, CRM, SCM) se comuniquen de manera eficiente, eliminando silos de datos y automatizando procesos de negocio de extremo a extremo.</p>
+                        <ul>
+                            <li data-lang-key="integrate_s1_l1"><strong>SAP Cloud Platform Integration (CPI):</strong> Diseño y gestión de flujos de integración.</li>
+                            <li data-lang-key="integrate_s1_l2"><strong>Conectividad Híbrida:</strong> Unificamos tus entornos On-Premise y Multi-Cloud.</li>
+                            <li data-lang-key="integrate_s1_l3"><strong>Integración de APIs:</strong> Creamos y gestionamos APIs para conectar tus servicios.</li>
+                            <li data-lang-key="integrate_s1_l4"><strong>Flujos de Datos (ETL/ELT):</strong> Movemos tus datos de forma segura para analítica y IA.</li>
+                        </ul>
+                        <div class="contact-button-container" style="text-align: left; margin-top: 30px;">
+                            <a href="contact.html" class="btn-primary" data-lang-key="integrate_s1_btn">Agenda una Consultoría</a>
+                        </div>
+                    </div>
+                    <div class="content-image">
+                        <img src="img/lamarr-integrate-visual.png" alt="Integración de Sistemas SAP, Cloud y API">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p data-lang-key="footer_copyright">&copy; 2025 Lamarr Tech. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    <script src="js/script.js"></script>
+    <script src="js/idiomas.js"></script>
+</body>
+</html>

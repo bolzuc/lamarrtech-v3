@@ -1,0 +1,922 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LAMARR TECH | Data, IA y Estrategia Cloud</title>
+    <!-- Favicon - NUEVO -->
+    <link rel="icon" href="img/infinity-modern-bluedark.png" type="image/png">
+    <link rel="shortcut icon" href="img/infinity-modern-bluedark.png" type="image/png">
+    <link rel="apple-touch-icon" href="img/infinity-modern-bluedark.png">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/header.css">
+    
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/partners-section.css">
+    <link rel="stylesheet" href="css/premium-theme.css">
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
+    <style>
+        :root {
+            --color-bg-light: #f8f9fa;
+        }
+        section {
+            padding: 60px 0;
+        }
+        
+        section:nth-of-type(odd) {
+            background-color: var(--color-bg-light);
+        }
+
+        #map {
+            height: 500px;
+            width: 100%;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        .leaflet-popup-content-wrapper { border-radius: 8px; }
+        .leaflet-popup-content { font-family: var(--font-primary); margin: 15px 20px 15px 15px; }
+        .leaflet-popup-content h3 { font-size: 1.1rem; font-weight: 600; color: var(--color-text); margin: 0 0 5px 0; }
+        .leaflet-popup-content p { font-size: 0.9rem; color: var(--color-text-secondary); margin: 0; }
+        .custom-marker { width: 24px; height: 24px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.2); opacity: 0.9; }
+        .leaflet-marker-icon:hover .custom-marker { transform: scale(1.1); opacity: 1; }
+        .marker-hq { background-color: var(--color-primary); width: 28px; height: 28px; }
+        .marker-hub { background-color: #fd7e14; }
+        .marker-delivery { background-color: #20c997; }
+        .marker-operaciones { background-color: #6f42c1; }
+        .marker-desarrollo { background-color: #dc3545; }
+
+        .marker-hq-logo {
+            width: 28px;
+            height: 28px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            padding: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            border: 2px solid var(--color-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .marker-hq-logo img {
+            width: 100%; 
+            height: 100%;
+            object-fit: contain;
+            display: block;
+        }
+        .connection-line {
+            stroke: var(--color-primary);
+            stroke-opacity: 0.9;
+            stroke-width: 2; 
+            stroke-dasharray: none;
+            fill: none;
+        }
+
+        @media (max-width: 768px) {
+            .connection-line {
+                stroke-width: 1.5; 
+            }
+        }
+
+        .partners-section {
+            margin-top: 40px;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-card {
+            background-color: var(--color-background);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--color-border);
+            padding: 30px 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .team-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 4px solid var(--color-background);
+            box-shadow: 0 0 0 1px var(--color-border);
+        }
+
+        .team-name {
+            font-family: var(--font-primary);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: 5px;
+        }
+
+        .team-role {
+            font-family: var(--font-primary);
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 0;
+        }
+        
+        .hero-solution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05), 0 0 15px rgba(0, 123, 255, 0.4);
+        }
+
+        .presencia-section-header {
+            padding: 25px 30px;
+            background-color: var(--color-primary);
+            color: #fff;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .presencia-section-header h3 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0;
+        }
+        .presencia-section-header p {
+            font-size: 1.1rem;
+            color: #fff;
+            opacity: 0.9;
+            margin: 10px 0 0 0;
+        }
+
+        .presencia-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        @media (min-width: 992px) {
+            .presencia-grid {
+                grid-template-columns: 1fr 1fr;
+                align-items: flex-start;
+            }
+        }
+        
+        #map-container {
+            width: 100%;
+        }
+
+        .presencia-tabla-container {
+            background-color: var(--color-background);
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .presencia-tabla-body {
+            overflow-x: auto;
+        }
+
+        .presencia-tabla-body table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .presencia-tabla-body th,
+        .presencia-tabla-body td {
+            padding: 15px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--color-border);
+            vertical-align: top;
+        }
+
+        .presencia-tabla-body th {
+            background-color: var(--color-bg-light);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--color-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .presencia-tabla-body td {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+        }
+
+        .presencia-tabla-body .td-region .region-title {
+            font-weight: 600;
+            color: var(--color-text);
+            font-size: 1rem;
+        }
+
+        .presencia-tabla-body .td-region .region-role {
+            font-size: 0.9rem;
+        }
+
+        .presencia-tabla-body .td-valor {
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        .presencia-tabla-body tr:last-child td {
+            border-bottom: none;
+        }
+
+        .presencia-tabla-footer {
+            padding: 25px 30px;
+            background-color: var(--color-bg-light);
+            border: 1px solid var(--color-border);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin-top: 30px;
+            border-radius: 12px;
+        }
+
+        .presencia-tabla-footer h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: 10px;
+        }
+
+        .presencia-tabla-footer blockquote {
+            font-size: 1rem;
+            color: var(--color-text-secondary);
+            font-style: italic;
+            border-left: 4px solid var(--color-primary);
+            padding-left: 15px;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .presencia-tabla-footer blockquote span {
+            font-weight: 600;
+            color: var(--color-text);
+        }
+        
+        .intro-section {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+        .intro-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--color-text);
+        }
+        .intro-text-block {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .intro-text-block p {
+            font-size: 1.2rem;
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        .diferencia-section {
+            padding: 80px 0;
+            background-color: var(--color-bg-light);
+        }
+        .diferencia-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--color-text);
+        }
+        .diferencia-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            text-align: left;
+        }
+        .diferencia-card {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--color-border);
+            display: flex;
+            flex-direction: column;
+        }
+        .diferencia-card h3 {
+            font-size: 1.5em;
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: 10px;
+            flex-grow: 1;
+        }
+        .diferencia-card p {
+            font-size: 1rem;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+    </style>
+
+    <!-- INICIO: Estilos para centrar las tarjetas de servicio (Pirámide Invertida) -->
+    <style>
+        .hero-solutions-grid {
+            /* Cambiamos de Grid a Flexbox para centrar la última fila */
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* Esto centrará la fila de 2 tarjetas */
+            gap: 30px;
+        }
+
+        .hero-solution-card {
+            /* Definimos el tamaño de las tarjetas para Flexbox */
+            flex-grow: 1;
+            flex-basis: 300px; /* El 'min' del minmax original */
+            max-width: 380px;  /* (1200px container - 60px gaps) / 3 items = 380px */
+            
+            /* Mantenemos el display flex interno para alinear el botón */
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+    <!-- FIN: Estilos para centrar las tarjetas -->
+
+    <!-- INICIO: Estilos para la tabla de Región/Rol (formato de lista) -->
+    <style>
+        .presencia-tabla-body .td-merged-region {
+            vertical-align: top;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+        .presencia-tabla-body .region-description {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            line-height: 1.5;
+            margin-top: 5px; /* Separación del título */
+            margin-bottom: 0;
+        }
+        /* AÑADIDO: Pone el título de la región en negrita */
+        .presencia-tabla-body .region-title {
+            font-weight: 700; /* O 'bold' */
+        }
+
+        /* --- INICIO: NUEVOS ESTILOS RESPONSIVE --- */
+        @media (max-width: 767px) {
+            .hero-premium h1 {
+                /* CAMBIO: Reducir el H1 en móvil */
+                font-size: 2.2em; 
+            }
+            .hero-premium .hero-subtitle {
+                font-size: 1.1em; /* Reducir subtítulo en móvil */
+                margin-bottom: 30px;
+            }
+            .hero-solutions-grid {
+                /* CAMBIO: Apilar en 1 columna en móvil */
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 20px; /* Aumentar espacio vertical */
+            }
+            .hero-solution-card {
+                flex-basis: auto; /* Reset flex basis */
+                max-width: 100%; /* Reset max-width */
+                padding: 20px; /* Reduce padding */
+            }
+            .hero-solution-card h3 {
+                font-size: 1.1em; /* Smaller title */
+            }
+            .hero-solution-card p {
+                font-size: 0.9rem; /* Smaller text */
+                margin-bottom: 15px;
+            }
+            .hero-solution-card .btn-primary {
+                font-size: 0.9rem;
+                padding: 8px 16px;
+            }
+            .hero-solution-card .card-icon {
+                width: 36px;
+                height: 36px;
+                margin-bottom: 15px;
+            }
+            #map {
+                height: 350px; /* Make map shorter on mobile */
+            }
+            .presencia-section-header h3 {
+                font-size: 2rem; /* Smaller title */
+            }
+            /* --- Hacemos la tabla más responsiva --- */
+            .presencia-tabla-body td {
+                display: block; /* Apilar celdas de tabla */
+                width: 100%;
+                border-bottom: none; /* Quitar borde inferior de celda */
+            }
+            .presencia-tabla-body tr {
+                display: block;
+                border-bottom: 1px solid var(--color-border); /* Poner borde en la fila */
+                padding: 15px 0;
+            }
+            .presencia-tabla-body tr:last-child {
+                border-bottom: none;
+            }
+            .presencia-tabla-body .td-merged-region {
+                padding: 0 5px; /* Ajustar padding */
+            }
+        }
+        
+        /* CAMBIO: Eliminada la regla @media (max-width: 400px) ya que ahora 1 columna es el default en 767px */
+        
+        /* --- FIN: NUEVOS ESTILOS RESPONSIVE --- */
+
+    </style>
+    <!-- FIN: Estilos para la tabla de Región/Rol -->
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html"><img src="img/logo-azul-oscuro.png" alt="Lamarr Tech Logo"></a>
+            </div>
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html" class="active" data-lang-key="nav_inicio">INICIO</a></li>
+                    <li class="dropdown">
+                        <a href="#" data-lang-key="nav_servicios">SERVICIOS
+                            <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                        </a>
+                        <ul class="dropdown-content">
+                            <li><a href="lamarr-cloud.html" data-lang-key="nav_servicios_cloud">CLOUD</a></li>
+                            <li><a href="lamarr-integrate.html" data-lang-key="nav_servicios_integrate">INTEGRATE</a></li>
+                            <li><a href="lamarr-data-ai.html" data-lang-key="nav_servicios_data_ai">DATA+AI</a></li>
+                            <li><a href="lamarr-secure.html" data-lang-key="nav_servicios_secure">SECURE</a></li>
+                            <li><a href="services-sap.html" data-lang-key="nav_servicios_sap">SAP</a></li>
+                        </ul>
+                    </li>
+                    <!-- <li><a href="nuestro-equipo.html" data-lang-key="nav_equipo">EQUIPO</a></li> -->
+                    <li><a href="noticias.html" data-lang-key="nav_noticias">NOTICIAS</a></li>
+                    <li><a href="contact.html" data-lang-key="nav_contacto">CONTACTO</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Botón de Idioma MODIFICADO -->
+            <div class="language-switcher">
+                <button class="lang-btn" aria-label="Seleccionar idioma">
+                    <span class="lang-btn-text">ES</span>
+                    <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+                <div class="lang-dropdown">
+                    <a href="#" data-lang="es">🇪🇸 ES (Español)</a>
+                    <a href="#" data-lang="pt">🇧🇷 PT (Português)</a>
+                    <a href="#" data-lang="en">🇺🇸 EN (English)</a>
+                </div>
+            </div>
+
+            <button class="menu-toggle" aria-label="Abrir menú">
+                <svg id="menu-icon-open" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                <svg id="menu-icon-close" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none;"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+    </header>
+
+    <div class="mobile-nav-container">
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="index.html" data-lang-key="nav_inicio">INICIO</a></li>
+                <li class="mobile-submenu">
+                    <a href="#" class="mobile-submenu-toggle" data-lang-key="nav_servicios">SERVICIOS
+                        <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                    </a>
+                    <ul class="mobile-submenu-content">
+                        <li><a href="lamarr-cloud.html" data-lang-key="nav_servicios_cloud">CLOUD</a></li>
+                        <li><a href="lamarr-integrate.html" data-lang-key="nav_servicios_integrate">INTEGRATE</a></li>
+                        <li><a href="lamarr-data-ai.html" data-lang-key="nav_servicios_data_ai">DATA+AI</a></li>
+                        <li><a href="lamarr-secure.html" data-lang-key="nav_servicios_secure">SECURE</a></li>
+                        <li><a href="services-sap.html" data-lang-key="nav_servicios_sap">SAP</a></li>
+                    </ul>
+                </li>
+                <!-- <li><a href="nuestro-equipo.html" data-lang-key="nav_equipo">EQUIPO</a></li> -->
+                <li><a href="noticias.html" data-lang-key="nav_noticias">NOTICIAS</a></li>
+                <li><a href="contact.html" data-lang-key="nav_contacto">CONTACTO</a></li>
+            </ul>
+            <!-- INICIO: Selector de idioma para móvil AÑADIDO -->
+            <div class="language-switcher">
+                <button class="lang-btn" aria-label="Seleccionar idioma">
+                    <span class="lang-btn-text">ES</span>
+                    <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+                <div class="lang-dropdown">
+                    <a href="#" data-lang="es">🇪🇸 ES (Español)</a>
+                    <a href="#" data-lang="pt">🇧🇷 PT (Português)</a>
+                    <a href="#" data-lang="en">🇺🇸 EN (English)</a>
+                </div>
+            </div>
+            <!-- FIN: Selector de idioma para móvil AÑADIDO -->
+        </nav>
+    </div>
+
+    <main>
+        <section class="hero hero-premium">
+            <div class="hero-content">
+                <div class="container">
+                    <h1 data-lang-key="hero_h1">Creemos que el valor real nace de conectar la tecnología con un soporte humano experto.</h1>
+                    <p class="hero-subtitle" data-lang-key="hero_p">Por eso integramos tu ecosistema End-to-End (SAP, Cloud, Apps) para que opere sin fricción. Te acompañamos con consultores expertos, no con tickets. Entendemos tu negocio y estamos presentes en cada etapa.</p>
+                    
+                    <div id="services-container" class="hero-solutions-grid">
+                        
+                        <div class="hero-solution-card">
+                            <div class="card-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 0 0 4.5 4.5H18a4.5 4.5 0 0 0 4.5-4.5V8.25a4.5 4.5 0 0 0-4.5-4.5H6.75a4.5 4.5 0 0 0-4.5 4.5v6.75Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75c0-1.01.37-1.93.97-2.656a4.498 4.498 0 0 1 .31-3.186c.14-1.29.9-2.429 1.93-3.185S8.28 6 9.75 6h4.5c1.47 0 2.855.23 4.09.629a4.486 4.486 0 0 1 1.93 3.185c.14 1.29.37 2.429.97 3.186C21.38 13.82 21.75 14.74 21.75 15.75v.21c0 .09-.01.18-.02.269a4.49 4.49 0 0 1-1.1 2.36c-.23.23-.48.43-.75.6A4.48 4.48 0 0 1 18 19.5H6.75a4.48 4.48 0 0 1-1.88-.361 4.49 4.49 0 0 1-.75-.6 4.49 4.49 0 0 1-1.1-2.36c-.01-.09-.02-.18-.02-.27v-.21Z" /></svg>
+                            </div>
+                            <h3 data-lang-key="card_cloud_h3">Arquitectura Multicloud para tu Negocio</h3>
+                            <!-- CAMBIO 2: Texto de la tarjeta actualizado -->
+                            <p data-lang-key="card_cloud_p">Elegimos y combinamos AWS, Google Cloud Platform y Huawei Cloud para construir una infraestructura flexible, eficiente y preparada para crecer. Sin dependencias forzadas. Tú eliges. Tu negocio manda.</p>
+                            <a href="lamarr-cloud.html" class="btn-primary" data-lang-key="card_cloud_btn">Ver Cloud</a>
+                        </div>
+                        
+                        <div class="hero-solution-card">
+                            <div class="card-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" /></svg>
+                            </div>
+                            <h3 data-lang-key="card_integrate_h3">Integración de tu Ecosistema Tecnológico</h3>
+                            <p data-lang-key="card_integrate_p">Conectamos SAP, nube, aplicaciones y datos para que la operación fluya sin silos, sin retrabajos y sin fricción.</p>
+                            <a href="lamarr-integrate.html" class="btn-primary" data-lang-key="card_integrate_btn">Ver Integrate</a>
+                        </div>
+
+                        <div class="hero-solution-card">
+                            <div class="card-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" /></svg>
+                            </div>
+                            <h3 data-lang-key="card_data_h3">Del Dato a la Acción (Data + IA)</h3>
+                            <p data-lang-key="card_data_p">Convertimos tus datos en conocimiento accionable. Decisiones más rápidas, precisas y estratégicas con impacto directo en tu operación.</p>
+                            <a href="lamarr-data-ai.html" class="btn-primary" data-lang-key="card_data_btn">Ver Data+AI</a>
+                        </div>
+                        
+                        <div class="hero-solution-card">
+                            <div class="card-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.6-3.751A11.959 11.959 0 0115 5.714m-6 0A11.959 11.959 0 006 3.598 11.99 11.99 0 019.75 3c1.31 0 2.571.21 3.751.6M9 5.714A11.959 11.959 0 0112 3c1.31 0 2.571.21 3.751.6m0 0A11.959 11.959 0 0118 3.598 11.99 11.99 0 0014.25 3c-1.31 0-2.571.21-3.751.6" /></svg>
+                            </div>
+                            <h3 data-lang-key="card_secure_h3">Protección Integral de Datos y Operaciones</h3>
+                            <p data-lang-key="card_secure_p">Diseñamos seguridad multinube con control de accesos, respaldo inteligente y monitoreo continuo. Menos riesgo, más continuidad y total visibilidad.</p>
+                            <a href="lamarr-secure.html" class="btn-primary" data-lang-key="card_secure_btn">Ver Secure</a>
+                        </div>
+
+                        <div class="hero-solution-card">
+                            <div class="card-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.07a2.25 2.25 0 0 1-2.25 2.25H5.625a2.25 2.25 0 0 1-2.25-2.25v-4.07m16.5 0v-3.875a2.25 2.25 0 0 0-2.25-2.25H5.625a2.25 2.25 0 0 0-2.25 2.25v3.875m16.5 0M4.5 14.15h15M12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z" /></svg>
+                            </div>
+                            <h3 data-lang-key="card_sap_h3">Dominio Profundo del Ecosistema SAP</h3>
+                            <p data-lang-key="card_sap_p">+20 años de experiencia real en SAP Business One y SAP ECC. Implementamos y optimizamos con criterio y conocimiento de procesos. Resultados desde el día uno.</p>
+                            <a href="services-sap.html" class="btn-primary" data-lang-key="card_sap_btn">Ver SAP</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE SOCIOS ACTUALIZADA -->
+        <section class="partners-section">
+            <div class="container">
+                <!-- CAMBIO 1: Título de Socios actualizado -->
+                <h2 data-lang-key="partners_h2">Aliados que construyen un futuro con Lamarr</h2>
+                
+                <!-- INICIO DE LA NUEVA ESTRUCTURA DEL SLIDER -->
+                <div class="partners-slider-container">
+                    <div class="partners-slider-track">
+                        
+                        <!-- Slide 1 (5 logos) -->
+                        <div class="partners-slide">
+                            <div class="partner-item"><img src="img/logos/Amazon_Web_Services-Logo.png" alt="Logo AWS"></div>
+                            <div class="partner-item"><img src="img/logos/Araucaria Software Logo (1).png" alt="Logo Araucaria Software"></div>
+                            <div class="partner-item"><img src="img/logos/camara colombochilena.png" alt="Logo Cámara Colombo Chilena"></div>
+                            <div class="partner-item"><img src="img/logos/dimarsa.png" alt="Logo Dimarsa"></div>
+                            <div class="partner-item"><img src="img/logos/DSP INDUSTRIAL.png" alt="Logo DSP Industrial"></div>
+                        </div>
+
+                        <!-- Slide 2 (5 logos) -->
+                        <div class="partners-slide">
+                            <div class="partner-item"><img src="img/logos/google-cloud-platform.png" alt="Logo Google Cloud"></div>
+                            <div class="partner-item"><img src="img/logos/grupocrea.png" alt="Logo Grupo Crea"></div>
+                            <div class="partner-item"><img src="img/logos/huawei blanco.png" alt="Logo Huawei"></div>
+                            <div class="partner-item"><img src="img/logos/j-jaher-.png" alt="Logo Comercial Jaher"></div>
+                            <div class="partner-item"><img src="imgimg/logos/logo_chilecompra.png" alt="Logo ChileCompra"></div>
+                        </div>
+
+                        <!-- Slide 3 (5 logos) -->
+                        <div class="partners-slide">
+                            <div class="partner-item"><img src="img/logos/LOL_versiones-blanco.png" alt="Logo Licencias OnLine"></div>
+                            <div class="partner-item"><img src="img/logos/Noventiq_ideAkdwnX9_0.png" alt="Logo Noventiq"></div>
+                            <div class="partner-item"><img src="img/logos/ofkelia.png" alt="Logo Ofkelia"></div>
+                            <div class="partner-item"><img src="img/logos/penagos hermanos.png" alt="Logo Penagos Hermanos"></div>
+                            <div class="partner-item"><img src="img/logos/Pullman_Bus.png" alt="Logo Pullman Bus"></div>
+                        </div>
+                        
+                        <!-- Slide 4 (4 logos) -->
+                        <div class="partners-slide">
+                             <div class="partner-item"><img src="img/logos/scaleup.jpg" alt="Logo ScaleUp"></div>
+                            <div class="partner-item"><img src="img/logos/td-synnex-logo-png.png" alt="Logo TD Synnex"></div>
+                            <div class="partner-item"><img src="img/logos/ubuntu.png" alt="Logo Ubuntu"></div>
+                            <div class="partner-item"><img src="img/logos/WIT.png" alt="Logo WIT"></div>
+                        </div>
+
+                    </div>
+
+                    <!-- Flechas de Navegación -->
+                    <button class="slider-arrow prev" aria-label="Slide anterior">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </button>
+                    <button class="slider-arrow next" aria-label="Siguiente slide">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+
+                    <!-- Puntos de Paginación -->
+                    <div class="slider-dots">
+                        <button class="slider-dot active" aria-label="Ir a slide 1"></button>
+                        <button class="slider-dot" aria-label="Ir a slide 2"></button>
+                        <button class="slider-dot" aria-label="Ir a slide 3"></button>
+                        <button class="slider-dot" aria-label="Ir a slide 4"></button>
+                    </div>
+                </div>
+                <!-- FIN DE LA NUEVA ESTRUCTURA DEL SLIDER -->
+
+            </div>
+        </section>
+        <!-- FIN DE LA SECCIÓN DE SOCIOS -->
+
+        <section id="presencia-global">
+            <div class="container">
+                <!-- CAMBIO 3: Título actualizado, <p> eliminado -->
+                <div class="presencia-section-header">
+                    <h3 data-lang-key="map_h3">Presencia y Capacidad Global</h3>
+                </div>
+
+                <div class="presencia-grid">
+                    
+                    <div id="map-container">
+                        <div id="map"></div>
+                    </div>
+                    
+                    <div class="presencia-tabla-container">
+                        <div class="presencia-tabla-body">
+                            <table>
+                                <!-- CABEZAL ELIMINADO SEGÚN DISEÑO -->
+                                <!-- INICIO: TABLA ACTUALIZADA POR EL USUARIO -->
+                                <tbody>
+                                    <!-- Fila para Chile -->
+                                    <tr>
+                                        <td colspan="2" class="td-merged-region">
+                                            <div class="region-title" data-lang-key="map_table_row1_title">Chile</div>
+                                            <p class="region-description" data-lang-key="map_table_row1_desc">HeadQuarters</p>
+                                        </td>
+                                    </tr>
+                                    <!-- Fila para Brasil, Costa Rica, Venezuela -->
+                                    <tr>
+                                        <td colspan="2" class="td-merged-region">
+                                            <div class="region-title" data-lang-key="map_table_row2_title">Brasil, Costa Rica & Venezuela</div>
+                                            <p class="region-description" data-lang-key="map_table_row2_desc">Proyectos SAP, Integración, Operación Multicloud, Soporte Regional</p>
+                                        </td>
+                                    </tr>
+                                    <!-- Fila para Miami -->
+                                    <tr>
+                                        <td colspan="2" class="td-merged-region">
+                                            <div class="region-title" data-lang-key="map_table_row3_title">Miami</div>
+                                            <p class="region-description" data-lang-key="map_table_row3_desc">Hub de alianza</p>
+                                        </td>
+                                    </tr>
+                                    <!-- Fila para India -->
+                                    <tr>
+                                        <td colspan="2" class="td-merged-region">
+                                            <div class="region-title" data-lang-key="map_table_row4_title">India</div>
+                                            <p class="region-description" data-lang-key="map_table_row4_desc">Acelerador de desarrollo</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <!-- FIN: TABLA ACTUALIZADA POR EL USUARIO -->
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                
+                <!-- CAMBIO 5: Texto de compromiso actualizado -->
+                <div class="presencia-tabla-footer">
+                    <h4 data-lang-key="map_footer_h4">Nuestro Compromiso</h4>
+                    <blockquote> 
+                        <span data-lang-key="map_footer_q">"Tu negocio, impulsado por experiencia global y compromiso real"</span>
+                    </blockquote>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p data-lang-key="footer_copyright">&copy; 2025 Lamarr Tech. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    
+    <script>
+        
+        function makeCurved(from, to, factor) {
+            const latLngs = [from, to];
+            const middle = [
+                (from[0] + to[0]) / 2,
+                (from[1] + to[1]) / 2
+            ];
+            
+            const dLat = to[0] - from[0];
+            const dLon = to[1] - from[1];
+            
+            const perpSlope = dLon / dLat;
+            const dist = Math.sqrt(dLat * dLat + dLon * dLon);
+            const offset = dist * factor;
+
+            let controlLat, controlLon;
+            
+            if (Math.abs(dLat) < 0.001) { 
+                controlLat = middle[0] + offset;
+                controlLon = middle[1];
+            } else if (Math.abs(dLon) < 0.001) { 
+                controlLat = middle[0];
+                controlLon = middle[1] + offset;
+            } else {
+                controlLat = middle[0] - (offset / Math.sqrt(1 + perpSlope * perpSlope));
+                controlLon = middle[1] - (offset * perpSlope / Math.sqrt(1 + perpSlope * perpSlope));
+            }
+            
+            const controlPoint = [controlLat, controlLon];
+
+            return L.bezier.default(latLngs, controlPoint);
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            if (document.getElementById('map')) {
+                
+                if (typeof L.bezier === 'undefined') {
+                    L.bezier = {};
+                    L.bezier.default = function (latLngs, controlPoint) {
+                        return L.polyline([latLngs[0], controlPoint, latS[1]], { renderer: L.svg({ smoothFactor: 1.0 }) });
+                    };
+                }
+
+                const locations = [
+                    { lat: -33.4188, lon: -70.6017, tipo: 'hq', ciudad: "Santiago, Chile", funcion: "Headquarters (HQ) y centro de delivery técnico." },
+                    { lat: -23.5505, lon: -46.6333, tipo: 'delivery', ciudad: "São Paulo, Brasil", funcion: "Centro principal de delivery técnico y proyectos SAP." },
+                    { lat: 9.9281,   lon: -84.0907, tipo: 'delivery', ciudad: "San José, Costa Rica", funcion: "Centro de soporte y continuidad (Follow-the-sun)." },
+                    { lat: 10.4806,  lon: -66.9036, tipo: 'delivery', ciudad: "Caracas, Venezuela", funcion: "Centro de soporte y continuidad (Follow-the-sun)." },
+                    { lat: 26.1223,  lon: -80.3995, tipo: 'hub', ciudad: "Weston (Miami), USA", funcion: "Hub de alianzas estratégicas." },
+                    { lat: 17.3850,  lon: 78.4867,  tipo: 'desarrollo', ciudad: "Hyderabad, India", funcion: "Acelerador de desarrollo, datos y automatización." }
+                ];
+
+                // --- INICIO: MAPA INTERACTIVO ACTUALIZADO ---
+                const map = L.map('map', {
+                    scrollWheelZoom: true,  // Habilitamos zoom con rueda
+                    zoomControl: true,    // Habilitamos controles de zoom
+                    dragging: true,     // Habilitamos el arrastre
+                    touchZoom: true,    // Habilitamos el pinch-to-zoom en móvil
+                    doubleClickZoom: true,  // Habilitamos zoom con doble clic
+                    boxZoom: false,       // Mantenemos deshabilitado
+                    keyboard: false,    // Mantenemos deshabilitado
+                    tap: true         // Habilitamos tap en móvil
+                }).setView([4.7110, -50.0721], 2);
+                // --- FIN: MAPA INTERACTIVO ACTUALIZADO ---
+
+                L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                    subdomains: 'abcd',
+                    minZoom: 2,
+                    maxZoom: 10
+                }).addTo(map);
+
+                const logoIcon = L.divIcon({
+                    html: '<img src="img/infinity-modern-bluedark.png" alt="Lamarr Tech HQ">',
+                    className: 'marker-hq-logo',
+                    iconSize: [28, 28],
+                    iconAnchor: [14, 14]
+                });
+
+                const icons = {
+                    hq: logoIcon,
+                    hub: L.divIcon({ className: 'custom-marker marker-hub', iconSize: [24, 24], iconAnchor: [12, 12] }),
+                    delivery: L.divIcon({ className: 'custom-marker marker-delivery', iconSize: [24, 24], iconAnchor: [12, 12] }),
+                    desarrollo: L.divIcon({ className: 'custom-marker marker-desarrollo', iconSize: [24, 24], iconAnchor: [12, 12] })
+                };
+                
+                function getIcon(tipo) {
+                    return icons[tipo] || icons.delivery;
+                }
+
+                const hqLocation = locations.find(loc => loc.tipo === 'hq');
+                const hqLatLng = [hqLocation.lat, hqLocation.lon];
+
+                locations.forEach(loc => {
+                    const popupContent = `<h3>${loc.ciudad}</h3><p>${loc.funcion}</p>`;
+                    
+                    const marker = L.marker([loc.lat, loc.lon], { 
+                        icon: getIcon(loc.tipo) 
+                    })
+                    .addTo(map)
+                    .bindPopup(popupContent);
+                    
+                    marker.on('mouseover', function (e) {
+                        this.openPopup();
+                    });
+                    marker.on('mouseout', function (e) {
+                        this.closePopup();
+                    });
+                });
+                
+                map.fitBounds(L.geoJSON(locations.map(l => ({ type: "Point", coordinates: [l.lon, l.lat] }))).getBounds(), { padding: [50, 50] });
+            }
+        });
+    </script>
+    <!-- Se carga el script principal de JS que ahora incluye la lógica de idioma -->
+    <script src="js/script.js"></script>
+    <script src="js/idiomas.js"></script>
+
+    <!-- INICIO: Script del nuevo slider de socios -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sliderTrack = document.querySelector('.partners-slider-track');
+            if (sliderTrack) {
+                const slides = Array.from(sliderTrack.children);
+                const nextButton = document.querySelector('.slider-arrow.next');
+                const prevButton = document.querySelector('.slider-arrow.prev');
+                const dotsNav = document.querySelector('.slider-dots');
+                const dots = Array.from(dotsNav.children);
+                const slideCount = slides.length;
+                let currentIndex = 0;
+                let autoPlayInterval;
+
+                // Función para mover a un slide específico
+                const goToSlide = (index) => {
+                    // Asegurarse de que el índice esté en el rango correcto
+                    if (index < 0) {
+                        index = slideCount - 1;
+                    } else if (index >= slideCount) {
+                        index = 0;
+                    }
+
+                    sliderTrack.style.transform = 'translateX(-' + (index * 100) + '%)';
+                    
+                    // Actualizar punto activo
+                    dots.forEach(dot => dot.classList.remove('active'));
+                    dots[index].classList.add('active');
+                    
+                    currentIndex = index;
+                };
+
+                // Función para ir al siguiente slide
+                const nextSlide = () => {
+                    goToSlide(currentIndex + 1);
+                };
+
+                // Función para ir al slide anterior
+                const prevSlide = () => {
+                    goToSlide(currentIndex - 1);
+                };
+
+                // Reiniciar el intervalo de autoplay
+                const resetAutoPlay = () => {
+                    clearInterval(autoPlayInterval);
+                    autoPlayInterval = setInterval(nextSlide, 4000); // 4 segundos
+                };
+
+                // Event Listeners para las flechas
+                nextButton.addEventListener('click', () => {
+                    nextSlide();
+                    resetAutoPlay();
+                });
+
+                prevButton.addEventListener('click', () => {
+                    prevSlide();
+                    resetAutoPlay();
+                });
+
+                // Event Listeners para los puntos
+                dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        goToSlide(index);
+                        resetAutoPlay();
+                    });
+                });
+
+                // Iniciar autoplay
+                resetAutoPlay();
+            }
+        });
+    </script>
+    <!-- FIN: Script del nuevo slider de socios -->
+
+</body>
+</html>
