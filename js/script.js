@@ -1,5 +1,3 @@
-// Este archivo contiene la lógica del sitio.
-// Debe cargarse DESPUÉS de idiomas.js
 
 // Función para establecer el idioma
 function setLanguage(lang) {

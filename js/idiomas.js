@@ -1,5 +1,3 @@
-
-
 const translations = {
     es: {
         // --- Navegación (Claves compartidas) ---
@@ -38,25 +36,6 @@ const translations = {
         
         // --- Claves de Mapa y Tabla (ACTUALIZADAS) ---
         map_h3: "Presencia y Capacidad Global", // MODIFICADO
-        
-        // Claves antiguas (eliminadas o comentadas para limpieza)
-        // map_table_region: "Región / Sede",
-        // map_table_role: "Rol Estratégico",
-        // map_table_hq_title: "Chile (HQ)",
-        // map_table_hq_role: "Rol Estratégico",
-        // map_table_hq_desc: "Arquitectura, dirección técnica, liderazgo de proyectos.",
-        // map_table_br_title: "Brasil",
-        // map_table_br_role: "Rol Estratégico",
-        // map_table_br_desc: "Proyectos SAP, Integración, Operación Multicloud.",
-        // map_table_cr_ve_title: "Costa Rica & Venezuela",
-        // map_table_cr_ve_role: "Rol Estratégico",
-        // map_table_cr_ve_desc: "\"Follow-the-sun\" operativo / Soporte regional.",
-        // map_table_mia_title: "Miami",
-        // map_table_mia_role: "Rol Estratégico",
-        // map_table_mia_desc: "Hub de alianzas (AWS, Google, Huawei, ScaleUp AI).",
-        // map_table_in_title: "India",
-        // map_table_in_role: "Rol Estratégico",
-        // map_table_in_desc: "Data Engineering + Automatización + Dev SecOps.",
         
         // NUEVAS Claves para la tabla de index.html
         map_table_row1_title: "Chile",
@@ -114,7 +93,7 @@ const translations = {
         // --- Página: lamarr-data-ai.html ---
         data_h1: "LAMARR | DATA+AI",
         data_p1: "Inteligencia que transforma datos en decisiones reales. Integramos nuestra experiencia técnica con soluciones de IA probadas, para que tu negocio escale con IA desde el primer día.",
-        data_s1_h3: "Filosofía 360: Múltiples Puntos de Entrada, Una Sola Dirección",
+        data_s1_h3: "Filosofía 360: Múltiplos Puntos de Entrada, Una Sola Dirección",
         data_s1_p: "Entendemos que cada empresa se encuentra en una etapa diferente. Nuestra \"Filosofía 360\" nos permite agregar valor con IA independientemente de su punto de partida, acompañándolo desde la estrategia hasta la ejecución y el escalamiento.",
         data_s2_h2: "Etapas de Madurez",
         data_s2_c1_h3: "DATA READINESS",
@@ -175,6 +154,7 @@ const translations = {
         // --- Página: noticias.html ---
         news_h1: "Noticias: Lo que estamos construyendo",
         news_p1: "Crecemos junto a nuestros partners, nuestros clientes y nuestra comunidad. Cada paso fortalece nuestra capacidad de entregar soluciones integradas, seguras y escalables en SAP, Cloud e IA.",
+        
         news_s1_h2: "Nuevas Alianzas Estratégicas",
         news_s1_c1_h3: "Lamarr + WIT: Alianza para Desarrollo de Nuevos Negocios",
         news_s1_c1_p: "Hemos formalizado una alianza con WIT para fortalecer la apertura y calificación de oportunidades comerciales en Chile y LATAM. Este trabajo conjunto nos permite llegar a empresas que buscan modernizar SAP y escalar hacia arquitecturas multicloud, con acompañamiento consultivo y visión estratégica.",
@@ -182,24 +162,29 @@ const translations = {
         news_s1_c2_p: "Junto a La Araucaria Software, estamos desarrollando soluciones orientadas a ciberseguridad aplicada, protección de datos críticos y monitoreo inteligente de riesgos. La combinación de ingeniería segura + integración SAP + arquitectura cloud nos permite entregar soluciones escalables, eficientes y alineadas a los desafíos actuales.",
         news_s1_c3_h3: "Convenio Marco con Noventiq",
         news_s1_c3_p: "Este convenio formaliza nuestra capacidad de ejecutar proyectos SAP + Cloud de manera conjunta, asegurando continuidad, trazabilidad y escalabilidad en la entrega de servicios.",
+        
         news_s2_h2: "Eventos y Noticias Pasadas",
         news_s2_c1_h3: "Huawei Cloud reconoce a Lamarr como Partner con Potencial",
         news_s2_c1_p: "Lamarr participó en el Huawei Cloud Summit, donde fuimos reconocidos como Partner con Potencial en la región por nuestra experiencia en modernización SAP, estrategias multicloud y arquitecturas híbridas. Este hito refleja nuestro compromiso con soluciones de alto impacto, con ejecución técnica propia y acompañamiento continuo.",
-        news_s2_c1_alt: "Certificado Huawei Cloud Partner Lamarr Tech", // NUEVA CLAVE
+        news_s2_c1_alt: "Certificado Huawei Cloud Partner Lamarr Tech",
         news_s2_c2_h3: "Evento Presencial: SAP Business One en Huawei Cloud",
         news_s2_c2_p: "Realizamos un encuentro ejecutivo orientado a organizaciones que operan SAP Business One y desean migrar u optimizar su infraestructura en la nube, manteniendo continuidad operativa y control de costos. Presentamos rutas de transición, casos reales y modelos de arquitectura.",
         news_s2_c2_btn: "Leer más y ver video",
         news_s2_c3_h3: "Webinar Ejecutivo junto a Noventiq: El Fin de Soporte de SAP ECC",
         news_s2_c3_p: "En un encuentro ejecutivo reciente, conversamos junto a Noventiq sobre el fin de soporte de SAP ECC, sus implicancias y las opciones de transición hacia SAP en la nube. El enfoque fue claro: tomar decisiones informadas, no apresuradas.",
+        
+        // --- TEXTO ACTUALIZADO PARA EL EVENTO SAP B1 ---
         news_s3_h2: "Próximos Eventos",
-        news_s3_c1_h3: "Invitación a Próximo Evento | IA en la Contabilidad",
-        news_s3_c1_s: "IA Aplicada a Procesos Contables y Financieros",
-        news_s3_c1_p: "Realizaremos un Happy Hour Ejecutivo para conversar sobre cómo la Inteligencia Artificial está optimizando conciliaciones, reportes, auditorías internas y análisis financiero en pymes y sector público.",
-        news_s3_c1_l1: "Casos reales",
-        news_s3_c1_l2: "Integración con SAP, ERP locales y sistemas mixtos",
-        news_s3_c1_l3: "Conversación + Networking en un formato cercano",
-        news_s3_c1_btn: "→ Registra tu interés para asegurar cupo",
-        news_cierre: "En Lamarr avanzamos con una visión clara:<br>Tecnología integrada. Operación fluida.<br>Ejecución responsable y acompañamiento real.",
+        news_s3_c1_h3: "Webinar Exclusivo: Potencia tu SAP Business One en la Nube",
+        news_s3_c1_s: "Estrategias de Migración, Optimización y Ahorro",
+        news_s3_c1_p: "<strong>¿Tu infraestructura actual limita el crecimiento de tu negocio?</strong><br>Descubre cómo migrar SAP Business One a la nube puede reducir costos operativos, mejorar la seguridad y garantizar la continuidad de tu operación. En esta sesión, exploraremos las rutas de migración más eficientes y cómo aprovechar al máximo las capacidades de la nube.",
+        news_s3_c1_l1: "<strong>Migración sin fricción:</strong> Pasos clave para una transición segura.",
+        news_s3_c1_l2: "<strong>Ahorro y Rendimiento:</strong> Cómo optimizar recursos y mejorar la velocidad.",
+        news_s3_c1_l3: "<strong>Casos de Éxito:</strong> Empresas que ya transformaron su operación.",
+        news_s3_c1_btn: "→ Reserva tu cupo ahora",
+        // -----------------------------------------------
+
+        news_cierre: "En Lamarr avanzamos con una visión clara:<br>Tecnologia integrada. Operación fluida.<br>Ejecución responsable y acompañamiento real.",
         news_cta_h3: "No te pierdas nuestras futuras invitaciones",
         news_cta_p: "Si no quieres perderte nuestros próximos eventos y quieres que te invitemos directamente a tu correo, regístrate en nuestra página de contacto.",
         news_cta_btn: "Inscríbete aquí",
@@ -298,7 +283,7 @@ const translations = {
         card_integrate_h3: "Integration of your Tech Ecosystem",
         card_integrate_p: "We connect SAP, cloud, applications, and data so operations flow without silos, rework, or friction.",
         card_integrate_btn: "View Integrate",
-        card_data_h3: "From Data to Action (Data + AI)",
+        card_data_h3: "From Data to Action (Data + IA)",
         card_data_p: "We turn your data into actionable insights. Faster, more accurate, and strategic decisions with direct impact on your operation.",
         card_data_btn: "View Data+AI",
         card_secure_h3: "Comprehensive Data & Operations Protection",
@@ -310,7 +295,7 @@ const translations = {
         partners_h2: "Allies building a future with Lamarr",
         
         // --- Claves de Mapa y Tabla (ACTUALIZADAS) ---
-        map_h3: "Global Presence and Capability", // MODIFICADO
+        map_h3: "Global Presence and Capability", 
 
         // NUEVAS Claves para la tabla de index.html
         map_table_row1_title: "Chile",
@@ -340,12 +325,12 @@ const translations = {
         form_message: "Message",
         form_submit_btn: "Send",
         contact_info_h2: "Direct Information",
-        contact_info_company: "Business Name:", // NUEVA
-        contact_info_rut: "Tax ID:", // NUEVA
-        contact_info_giro: "Business Activity:", // NUEVA
+        contact_info_company: "Business Name:", 
+        contact_info_rut: "Tax ID:", 
+        contact_info_giro: "Business Activity:", 
         contact_info_phone: "Phone:",
         contact_info_email: "Email:",
-        contact_info_address: "Address:", // ACTUALIZADA
+        contact_info_address: "Address:", 
         popup_title: "Thank you for contacting us!",
         popup_p: "Your message has been sent. For faster assistance, you can contact us directly on WhatsApp.",
         popup_btn: "Chat on WhatsApp",
@@ -429,6 +414,7 @@ const translations = {
         // --- Página: noticias.html ---
         news_h1: "News: What we are building",
         news_p1: "We grow alongside our partners, our clients, and our community. Each step strengthens our ability to deliver integrated, secure, and scalable solutions in SAP, Cloud, and AI.",
+        
         news_s1_h2: "New Strategic Alliances",
         news_s1_c1_h3: "Lamarr + WIT: Alliance for New Business Development",
         news_s1_c1_p: "We have formalized an alliance with WIT to strengthen the opening and qualification of business opportunities in Chile and LATAM. This joint effort allows us to reach companies looking to modernize SAP and scale to multicloud architectures, with consultative support and strategic vision.",
@@ -436,6 +422,7 @@ const translations = {
         news_s1_c2_p: "Together with La Araucaria Software, we are developing solutions focused on applied cybersecurity, critical data protection, and intelligent risk monitoring. The combination of secure engineering + SAP integration + cloud architecture allows us to deliver scalable, efficient solutions aligned with current challenges.",
         news_s1_c3_h3: "Framework Agreement with Noventiq",
         news_s1_c3_p: "This agreement formalizes our ability to jointly execute SAP + Cloud projects, ensuring continuity, traceability, and scalability in service delivery.",
+        
         news_s2_h2: "Past Events and News",
         news_s2_c1_h3: "Huawei Cloud recognizes Lamarr as a Partner with Potential",
         news_s2_c1_p: "Lamarr participated in the Huawei Cloud Summit, where we were recognized as a Partner with Potential in the region for our experience in SAP modernization, multicloud strategies, and hybrid architectures. This milestone reflects our commitment to high-impact solutions, with our own technical execution and continuous support.",
@@ -445,14 +432,18 @@ const translations = {
         news_s2_c2_btn: "Read more and see video",
         news_s2_c3_h3: "Executive Webinar with Noventiq: The End of Support for SAP ECC",
         news_s2_c3_p: "In a recent executive meeting, we discussed with Noventiq the end of support for SAP ECC, its implications, and the options for transitioning to SAP on the cloud. The focus was clear: make informed decisions, not rushed ones.",
+        
+        // --- UPDATE: English Text for SAP B1 Webinar ---
         news_s3_h2: "Upcoming Events",
-        news_s3_c1_h3: "Invitation to Next Event | AI in Accounting",
-        news_s3_c1_s: "AI Applied to Accounting and Financial Processes",
-        news_s3_c1_p: "We will host an Executive Happy Hour to discuss how Artificial Intelligence is optimizing reconciliations, reports, internal audits, and financial analysis in SMEs and the public sector.",
-        news_s3_c1_l1: "Real cases",
-        news_s3_c1_l2: "Integration with SAP, local ERPs, and mixed systems",
-        news_s3_c1_l3: "Conversation + Networking in a close format",
-        news_s3_c1_btn: "→ Register your interest to secure a spot",
+        news_s3_c1_h3: "Exclusive Webinar: Boost Your SAP Business One in the Cloud",
+        news_s3_c1_s: "Strategies for Migration, Optimization, and Savings",
+        news_s3_c1_p: "<strong>Is your current infrastructure limiting your business growth?</strong><br>Discover how migrating SAP Business One to the cloud can reduce operating costs, improve security, and ensure operational continuity. In this session, we will explore efficient migration paths and how to leverage cloud capabilities fully.",
+        news_s3_c1_l1: "<strong>Frictionless Migration:</strong> Key steps for a secure transition.",
+        news_s3_c1_l2: "<strong>Savings and Performance:</strong> How to optimize resources and improve speed.",
+        news_s3_c1_l3: "<strong>Success Stories:</strong> Companies that have already transformed their operations.",
+        news_s3_c1_btn: "→ Reserve your spot now",
+        // -----------------------------------------------
+
         news_cierre: "At Lamarr, we move forward with a clear vision:<br>Integrated technology. Fluid operation.<br>Responsible execution and real support.",
         news_cta_h3: "Don't miss our future invitations",
         news_cta_p: "If you don't want to miss our upcoming events and want to be invited directly to your email, register on our contact page.",
@@ -699,14 +690,18 @@ const translations = {
         news_s2_c2_btn: "Ler mais e ver vídeo",
         news_s2_c3_h3: "Webinar Executivo com a Noventiq: O Fim do Suporte ao SAP ECC",
         news_s2_c3_p: "Em um recente encontro executivo, conversamos com a Noventiq sobre o fim do suporte ao SAP ECC, suas implicações e as opções de transição para o SAP na nuvem. O foco foi claro: tomar decisões informadas, não apressadas.",
+        
+        // --- UPDATE: Portuguese Text for SAP B1 Webinar ---
         news_s3_h2: "Próximos Eventos",
-        news_s3_c1_h3: "Convite para o Próximo Evento | IA na Contabilidade",
-        news_s3_c1_s: "IA Aplicada a Processos Contábeis e Financeiros",
-        news_s3_c1_p: "Realizaremos um Happy Hour Executivo para conversar sobre como a Inteligência Artificial está otimizando conciliações, relatórios, auditorias internas e análises financeiras em PMEs e no setor público.",
-        news_s3_c1_l1: "Casos reais",
-        news_s3_c1_l2: "Integração com SAP, ERPs locais e sistemas mistos",
-        news_s3_c1_l3: "Conversa + Networking em formato próximo",
-        news_s3_c1_btn: "→ Registre seu interesse para garantir vaga",
+        news_s3_c1_h3: "Webinar Exclusivo: Potencialize seu SAP Business One na Nuvem",
+        news_s3_c1_s: "Estratégias de Migração, Otimização e Economia",
+        news_s3_c1_p: "<strong>Sua infraestrutura atual limita o crescimento do seu negócio?</strong><br>Descubra como migrar o SAP Business One para a nuvem pode reduzir custos operacionais, melhorar a segurança e garantir a continuidade da sua operação. Nesta sessão, exploraremos as rotas de migração mais eficientes e como aproveitar ao máximo as capacidades da nuvem.",
+        news_s3_c1_l1: "<strong>Migração sem atritos:</strong> Passos-chave para uma transição segura.",
+        news_s3_c1_l2: "<strong>Economia e Desempenho:</strong> Como otimizar recursos e melhorar a velocidade.",
+        news_s3_c1_l3: "<strong>Casos de Sucesso:</strong> Empresas que já transformaram sua operação.",
+        news_s3_c1_btn: "→ Reserve sua vaga agora",
+        // -----------------------------------------------
+
         news_cierre: "Na Lamarr, avançamos com uma visão clara:<br>Tecnologia integrada. Operação fluida.<br>Execução responsável e acompanhamento real.",
         news_cta_h3: "Não perca nossos futuros convites",
         news_cta_p: "Se você não quer perder nossos próximos eventos e quer ser convidado diretamente em seu e-mail, cadastre-se em nossa página de contato.",
@@ -718,7 +713,7 @@ const translations = {
         team_s1_h2: "Direção e Estratégia",
         team_s1_c1_h3: "Daniela Santos Escalona",
         team_s1_c1_r: "Founder & CEO | Gerente Comercial",
-        team_s1_c1_p: "Lidera a estratégia global da Lamarr Tech, alianças com AWS, Google Cloud Platform e Huawei, desenvolvimento de mercado e relacionamento direto com clientes de médio e grande porte. Responsável pelo posicionamento comercial, propostas de valor, negociações e fechamento de oportunidades estratégicas.",
+        team_s1_c1_p: "Lidera a estratégia global da Lamarr Tech, alianzas com AWS, Google Cloud Platform e Huawei, desenvolvimento de mercado e relacionamento direto com clientes de médio e grande porte. Responsável pelo posicionamento comercial, propostas de valor, negociações e fechamento de oportunidades estratégicas.",
         team_s1_c2_h3: "Alcides Lizardo",
         team_s1_c2_r: "Co-Founder | Diretor de Operações e Finanças",
         team_s1_c2_p: "Responsável pela operação interna de projetos, finanças, controle de custos, contratação de pessoal, relacionamento com fornecedores e garantia de qualidade. Supervisiona as áreas técnicas e o cumprimento dos SLAs em serviços gerenciados.",
@@ -745,7 +740,7 @@ const translations = {
         team_s4_p: "(Modelos preditivos, relatórios financeiros, dashboards e RPA/IA)",
         team_s4_c1_h3: "Engenheiro de Dados / Especialista em BI",
         team_s4_c1_r: "Engenharia e Visualização",
-        team_s4_c1_p: "Modelagem de dados, construção de ETL, dashboards dinâmicos (Power BI, Looker, ModelArts, QuickSight).",
+        team_s4_c1_p: "Modelagem de dados, construção de ETL, dashboards dinámicos (Power BI, Looker, ModelArts, QuickSight).",
         team_s4_c2_h3: "Especialista em IA Aplicada",
         team_s4_c2_r: "Automação Inteligente",
         team_s4_c2_p: "Automação de processos, geração de relatórios inteligentes, assistentes empresariais e motores de análise baseados em IA.",

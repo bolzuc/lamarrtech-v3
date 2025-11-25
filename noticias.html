@@ -207,9 +207,29 @@
                 <h1 data-lang-key="news_h1">Noticias: Lo que estamos construyendo</h1>
                 <p data-lang-key="news_p1">Crecemos junto a nuestros partners, nuestros clientes y nuestra comunidad. Cada paso fortalece nuestra capacidad de entregar soluciones integradas, seguras y escalables en SAP, Cloud e IA.</p>
                 
+                <!-- ========================================================================== -->
+                <!-- SECCIÓN MOVIDA AL PRINCIPIO: Próximos Eventos (Webinar SAP B1) -->
+                <!-- ========================================================================== -->
+                <h2 class="section-title-h2" data-lang-key="news_s3_h2">Próximos Eventos</h2>
+                <div class="proximos-eventos-container" style="margin-top: 30px;">
+                    <!-- Tarjeta del evento actualizado -->
+                    <div class="page-detail-card">
+                        <h3 data-lang-key="news_s3_c1_h3">Webinar Exclusivo: Potencia tu SAP Business One</h3>
+                        <p><strong data-lang-key="news_s3_c1_s">Estrategias de Migración, Optimización y Ahorro en la Nube</strong><br>
+                           <span data-lang-key="news_s3_c1_p">¿Tu infraestructura actual limita el crecimiento de tu negocio? Descubre cómo migrar SAP Business One a la nube puede reducir costos operativos, mejorar la seguridad y garantizar la continuidad de tu operación. Únete a nuestros expertos en una sesión práctica.</span></p>
+                        <ul>
+                            <li data-lang-key="news_s3_c1_l1">Descubre cómo lograr una migración sin fricción.</li>
+                            <li data-lang-key="news_s3_c1_l2">Estrategias reales para optimizar costos y rendimiento.</li>
+                            <li data-lang-key="news_s3_c1_l3">Conoce casos de éxito que ya dieron el salto.</li>
+                        </ul>
+                        <a href="https://www.lamarrtech.cl/Landing%20Page%20Webinar%20SAP%20B1/landing.html" class="btn-primary" style="margin-top: 15px;" data-lang-key="news_s3_c1_btn" target="_blank">→ Reserva tu cupo ahora</a>
+                    </div>
+                </div>
+                <!-- ========================================================================== -->
+
+
                 <!-- Sección: Nuevas Alianzas -->
                 <h2 class="section-title-h2" data-lang-key="news_s1_h2">Nuevas Alianzas Estratégicas</h2>
-                <!-- Contenedor del nuevo listado de noticias -->
                 <div class="noticia-list-container">
                     
                     <article class="noticia-item item-image-left">
@@ -238,7 +258,6 @@
                 <h2 class="section-title-h2" data-lang-key="news_s2_h2">Eventos y Noticias Pasadas</h2>
                 <div class="noticia-list-container">
                     
-                    <!-- ARTÍCULO MODIFICADO: Contenido reemplazado por el carrusel -->
                     <article class="noticia-item item-image-right noticia-item-certificado">
                         
                         <!-- INICIO: Carrusel del Webinar -->
@@ -275,7 +294,6 @@
                             <p data-lang-key="news_s2_c1_p">Lamarr participó en el Huawei Cloud Summit, donde fuimos reconocidos como Partner con Potencial en la región por nuestra experiencia en modernización SAP, estrategias multicloud y arquitecturas híbridas. Este hito refleja nuestro compromiso con soluciones de alto impacto, con ejecución técnica propia y acompañamiento continuo.</p>
                         </div>
                     </article>
-                    <!-- FIN DE MODIFICACIÓN -->
 
                     <article class="noticia-item noticia-item-huawei item-image-right">
                         <div class="noticia-item-image">
@@ -296,27 +314,8 @@
                     </article>
                 </div>
 
-                <!-- Sección: Próximos Eventos -->
-                <h2 class="section-title-h2" data-lang-key="news_s3_h2">Próximos Eventos</h2>
-                <div class="proximos-eventos-container" style="margin-top: 30px;">
-                    <!-- Mantenemos la tarjeta para el evento destacado -->
-                    <div class="page-detail-card">
-                        <h3 data-lang-key="news_s3_c1_h3">Invitación a Próximo Evento | IA en la Contabilidad</h3>
-                        <p><strong data-lang-key="news_s3_c1_s">IA Aplicada a Procesos Contables y Financieros</strong><br>
-                           <span data-lang-key="news_s3_c1_p">Realizaremos un Happy Hour Ejecutivo para conversar sobre cómo la Inteligencia Artificial está optimizando conciliaciones, reportes, auditorías internas y análisis financiero en pymes y sector público.</span></p>
-                        <ul>
-                            <li data-lang-key="news_s3_c1_l1">Casos reales</li>
-                            <li data-lang-key="news_s3_c1_l2">Integración con SAP, ERP locales y sistemas mixtos</li>
-                            <li data-lang-key="news_s3_c1_l3">Conversación + Networking en un formato cercano</li>
-                        </ul>
-                        <a href="contact.html" class="btn-primary" style="margin-top: 15px;" data-lang-key="news_s3_c1_btn">→ Registra tu interés para asegurar cupo</a>
-                    </div>
-                </div>
-
-
                 <!-- Lema Institucional -->
                 <div class="cierre-institucional">
-                    <!-- CORRECCIÓN: Se vacía el <p> para que el script 'js/idiomas.js' lo llene correctamente con HTML -->
                     <p data-lang-key="news_cierre"></p>
                 </div>
 
@@ -352,7 +351,7 @@
                 
                 let currentIndex = 0;
                 let slideWidth = slides.length > 0 ? slides[0].getBoundingClientRect().width : 0;
-                let autoplayInterval; // <-- CAMBIO 2: Variable para autoplay
+                let autoplayInterval; 
 
                 // Crear puntos de navegación
                 slides.forEach((slide, index) => {
@@ -362,7 +361,7 @@
                     dot.setAttribute('aria-label', `Ir a slide ${index + 1}`);
                     dot.addEventListener('click', () => {
                         goToSlide(index);
-                        resetAutoplay(); // <-- CAMBIO 2: Reiniciar autoplay al hacer clic
+                        resetAutoplay(); 
                     });
                     dotsContainer.appendChild(dot);
                 });
@@ -371,7 +370,7 @@
 
                 // Función para ir a un slide
                 const goToSlide = (index) => {
-                    if (slides.length === 0) return; // No hacer nada si no hay slides
+                    if (slides.length === 0) return; 
                     
                     if (index < 0) {
                         index = slides.length - 1;
@@ -399,9 +398,9 @@
                     });
                 };
                 
-                // --- CAMBIO 2: Funciones de Autoplay ---
+                // --- Funciones de Autoplay ---
                 const startAutoplay = () => {
-                    clearInterval(autoplayInterval); // Limpiar intervalo existente
+                    clearInterval(autoplayInterval); 
                     autoplayInterval = setInterval(() => {
                         goToSlide(currentIndex + 1);
                     }, 8000); // 8000ms = 8 segundos
@@ -411,17 +410,16 @@
                     clearInterval(autoplayInterval);
                     startAutoplay();
                 };
-                // --- FIN CAMBIO 2 ---
 
                 // Eventos de botones
                 nextButton.addEventListener('click', () => {
                     goToSlide(currentIndex + 1);
-                    resetAutoplay(); // <-- CAMBIO 2: Reiniciar autoplay
+                    resetAutoplay(); 
                 });
 
                 prevButton.addEventListener('click', () => {
                     goToSlide(currentIndex - 1);
-                    resetAutoplay(); // <-- CAMBIO 2: Reiniciar autoplay
+                    resetAutoplay(); 
                 });
 
                 // Recalcular ancho en re-dimensionamiento (para responsividad)
@@ -431,14 +429,14 @@
                     resizeTimer = setTimeout(() => {
                         const newSlideWidth = slides.length > 0 ? slides[0].getBoundingClientRect().width : 0;
                         if (newSlideWidth !== 0) { 
-                            slideWidth = newSlideWidth; // Actualizar ancho
-                            track.style.transition = 'none'; // Desactivar transición para el ajuste
+                            slideWidth = newSlideWidth; 
+                            track.style.transition = 'none'; 
                             track.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
                             // Forzar reflow
                             track.offsetHeight; 
-                            track.style.transition = 'transform 0.5s ease-in-out'; // Reactivar transición
+                            track.style.transition = 'transform 0.5s ease-in-out'; 
                         }
-                        resetAutoplay(); // <-- CAMBIO 2: Reiniciar autoplay
+                        resetAutoplay(); 
                     }, 250);
                 });
                 
@@ -449,10 +447,10 @@
                         slideWidth = initialSlideWidth;
                         track.style.transform = `translateX(-${slideWidth * currentIndex}px)`;
                      }
-                     startAutoplay(); // <-- CAMBIO 2: Iniciar autoplay al cargar
+                     startAutoplay(); 
                 });
 
-                // --- CAMBIO 2: Pausar en hover ---
+                // --- Pausar en hover ---
                 carousel.addEventListener('mouseenter', () => {
                     clearInterval(autoplayInterval);
                 });

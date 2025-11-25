@@ -198,44 +198,98 @@
     <script src="js/script.js"></script>
     <script src="js/idiomas.js"></script>
     <script>
-        // Este script local solo maneja el popup del formulario
+        // Este script local solo maneja el envío del formulario y el popup.
         document.addEventListener('DOMContentLoaded', function() {
+            
+            // ***************************************************************
+            // 1. CONFIGURACIÓN
+            // ***************************************************************
+            // URL de despliegue de Google Apps Script proporcionada por el usuario
+            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzmf-bci4jl80oX1rJriTlB2Z99_UgeyAt_0bdpxI5SiJMt5yeTZ7FBof6VRAugyzXAaA/exec';
             
             const form = document.getElementById('lamarr-contact-form');
             const popup = document.getElementById('whatsapp-popup');
             const closeBtn = document.getElementById('popup-close');
             const whatsappLink = document.getElementById('popup-whatsapp-link');
+            const submitButton = form.querySelector('button[type="submit"]');
 
-            if (form) {
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    // Aquí iría la lógica de envío del formulario (fetch, etc.)
-                    // ...
-                    
-                    // Al tener éxito, mostrar el popup:
-                    if (popup) {
-                        popup.style.display = 'flex';
-                    }
-                });
-            }
-
+            // ***************************************************************
+            // 2. LÓGICA DEL POPUP
+            // ***************************************************************
+            const showPopup = () => {
+                if (popup) {
+                    popup.style.display = 'flex';
+                }
+            };
+            
             if (closeBtn) {
-                closeBtn.addEventListener('click', function() {
+                closeBtn.addEventListener('click', () => {
                     popup.style.display = 'none';
                 });
             }
 
             if (whatsappLink) {
-                whatsappLink.addEventListener('click', function() {
+                whatsappLink.addEventListener('click', () => {
                     popup.style.display = 'none';
                 });
             }
 
-            window.addEventListener('click', function(e) {
+            window.addEventListener('click', (e) => {
                 if (e.target == popup) {
                     popup.style.display = 'none';
                 }
             });
+
+            // ***************************************************************
+            // 3. LÓGICA DE ENVÍO DE FORMULARIO (Modo "no-cors" para máxima compatibilidad)
+            // ***************************************************************
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // 1. Recopilar datos
+                    const formData = new FormData(form);
+                    const data = {};
+                    formData.forEach((value, key) => {
+                        data[key] = value;
+                    });
+                    
+                    // 2. Deshabilitar botón
+                    const originalButtonText = submitButton.textContent;
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'Enviando...';
+                    
+                    // 3. Envío con modo 'no-cors' (similar a Socetti)
+                    fetch(SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors', // <<-- CLAVE PARA EVITAR EL BLOQUEO CORS EN EL NAVEGADOR
+                        headers: {
+                            // En no-cors, el Content-Type debe ser simple
+                            'Content-Type': 'text/plain;charset=utf-8', 
+                        },
+                        body: JSON.stringify(data),
+                    })
+                    .then(() => {
+                        // **CAMBIO CLAVE: Asumimos éxito (porque el dato sí llega al servidor)**
+
+                        // Éxito
+                        showPopup();
+                        form.reset();
+                        document.getElementById('servicio').value = ""; // Resetear la selección
+
+                    })
+                    .catch(error => {
+                        // Mantenemos la alerta genérica solo para errores de red TOTALES
+                        console.error('Error de red total:', error);
+                        alert('Error de red. Asegúrate de que el script esté desplegado correctamente y la SCRIPT_URL sea la correcta.');
+                    })
+                    .finally(() => {
+                        // Revertir el estado del botón
+                        submitButton.disabled = false;
+                        submitButton.textContent = originalButtonText;
+                    });
+                });
+            }
         });
     </script>
 </body>
